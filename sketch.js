@@ -1,18 +1,19 @@
-let bug; // Declare object
+let bugs = []; // Declare object
 
 function setup() {
   createCanvas(710, 400);
-  // Create object
-  bug = new Jitter();
+  // Create more bugs
+  for (let i = 0; i < 3; i++) {
+    bugs[i]= new Jitter();
+  }
 }
 
 function draw() {
   background(50, 89, 100);
-  
-
-  bug.move();
-  bug.display();
-
+  for (let i = 0; i < bugs.length; i++) {
+    bugs[i].move();
+    bugs[i].display();
+  }
 
 }
 
@@ -45,3 +46,4 @@ class Jitter {
     ellipse(this.x, this.y, this.diameter, this.diameter);
   }
 }
+
