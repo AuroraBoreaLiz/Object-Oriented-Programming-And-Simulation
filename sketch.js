@@ -1,78 +1,47 @@
-//initial code from p5js example
-//https://p5js.org/examples/simulate-particle-system.html
-
-let system;
+let bug; // Declare object
 
 function setup() {
-  createCanvas(720, 400);
-  system = new ParticleSystem(createVector(width / 2, height/1.5));
+  createCanvas(710, 400);
+  // Create object
+  bug = new Jitter();
 }
 
 function draw() {
-  background(51);
-  system.addParticle();
-  system.run();
+  background(50, 89, 100);
+  
+
+  bug.move();
+  bug.display();
+
+
 }
 
-// A simple Particle class
-let Particle = function(position) {
-  this.acceleration = createVector(0, -0.05);
-  this.velocity = createVector(random(-0.5, 0.5), random(-0.5, 0));
-  this.position = position.copy();
-  this.lifespan = 100;
-  this.color = 100;
-  this.color2 = 255;
-};
-
-Particle.prototype.run = function() {
-  this.update();
-  this.display();
-};
-
-// Method to update position
-Particle.prototype.update = function(){
-  this.velocity.add(this.acceleration);
-  this.position.add(this.velocity);
-  this.lifespan -= 2;
-};
-
-// Method to display
-Particle.prototype.display = function() {
-  noStroke();
-  fill(this.color2,this.color,32, this.lifespan);
-  ellipse(this.position.x, this.position.y, 20, 20);
-};
-
-// Is the particle still useful?
-Particle.prototype.isDead = function(){
-  return this.lifespan < 0;
-};
-
-// Is the particle still useful?
-Particle.prototype.isDead = function(){
-  return this.color < 0;
-};
-
-// Is the particle still useful?
-Particle.prototype.isDead = function(){
-  return this.color2 < 0;
-};
-
-let ParticleSystem = function(position) {
-  this.origin = position.copy();
-  this.particles = [];
-};
-
-ParticleSystem.prototype.addParticle = function() {
-  this.particles.push(new Particle(this.origin));
-};
-
-ParticleSystem.prototype.run = function() {
-  for (let i = this.particles.length-1; i >= 0; i--) {
-    let p = this.particles[i];
-    p.run();
-    if (p.isDead()) {
-      this.particles.splice(i, 1);
-    }
+// Jitter class
+class Jitter {
+  constructor() {
+    this.x = width/2;
+    this.y = height/2;
+    this.diameter = random(10, 30);
+    //If I adjust this number the random horizontal distance will go up in the move()
+    this.speed = 5;
   }
-};
+
+  move() {
+
+    this.x += random(-this.speed, this.speed);
+    //if you adjust this number to be positive the bug will go down!
+    //if you adjust this number to be negative the bug will go up!
+    //using a larger number makes the bug go faster.
+    this.y += -4;
+ 
+
+    if (this.y < 0) {
+      this.y = height/1.5;
+    }
+
+  }
+
+  display() {
+    ellipse(this.x, this.y, this.diameter, this.diameter);
+  }
+}
