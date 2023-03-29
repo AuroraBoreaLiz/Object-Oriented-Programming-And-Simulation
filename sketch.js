@@ -1,12 +1,15 @@
 let particles = [];
 function setup() {
   createCanvas(600, 400);
-  let p = new Particle ();
-  particles.push(p);
+
 }
 
 function draw() {
   background(0);
+  
+  //makes lots of particles. Move to setup to have not continuous
+  let p = new Particle ();
+  particles.push(p);
   
   for (let i = 0; i <particles.length; i++){
     particles[i].update();
