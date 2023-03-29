@@ -43,7 +43,7 @@ class Particle {
   
   //controls what the particle looks like
   show () {
-    stroke(255);
+    noStroke();
     fill (255,this.alpha);
     ellipse(this.x, this.y, 16);
   }
