@@ -22,15 +22,20 @@ class Particle {
     //particles start at the bottom
     this.x = 300;
     this.y = 380;
+    //change this to make particles go random left and right
     this.vx = random(-1,1);
+    //change this in the negative to make the particles go up randomly
     this.vy = random(-5,-1);
     
   }
   
+  //moves the particles x and y with the random from vx and vy
   update(){
     this.x += this.vx;
     this.y += this.vy;
   }
+  
+  //controls what the particle looks like
   show () {
     stroke(255);
     fill (255,10);
