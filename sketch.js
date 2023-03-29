@@ -29,6 +29,7 @@ class Particle {
     this.vx = random(-1,1);
     //change this in the negative to make the particles go up randomly
     this.vy = random(-5,-1);
+    this.alpha = 255;
     
   }
   
@@ -36,12 +37,14 @@ class Particle {
   update(){
     this.x += this.vx;
     this.y += this.vy;
+    //controls fade over time
+    this.alpha -= 5;
   }
   
   //controls what the particle looks like
   show () {
     stroke(255);
-    fill (255,10);
+    fill (255,this.alpha);
     ellipse(this.x, this.y, 16);
   }
 }
