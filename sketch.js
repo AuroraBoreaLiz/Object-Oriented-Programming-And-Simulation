@@ -3,14 +3,17 @@
 
 
 let particles = [];
+let f;
+
 function setup() {
   createCanvas(600, 400);
-
+  f = new Fire();
 }
 
 function draw() {
   background(0);
   
+  f.show();
   //can generate more particles at once by adjusting the i< 
   for (let i=0; i <5; i++) {
     
@@ -19,6 +22,7 @@ function draw() {
     
   }
   
+  //for (let i = 0; i <particles.length; i++){
   //particles.length-1 starts from the end of the array when deleting particles at the end of their lifespace so they aren't skipped when the array shifts
   for (let i = particles.length-1; i >= 0; i--){
     particles[i].update();
@@ -32,6 +36,19 @@ function draw() {
 
 }
 
+class Fire {
+  constructor(){
+    this.fx = 200;
+    this.fy = 380;
+    
+  }
+  
+  show(){
+    stroke(255);
+    fill(255,128,0,100)
+    ellipse(this.fx, this.fy, 18);
+  }
+}
 class Particle {
   
   
