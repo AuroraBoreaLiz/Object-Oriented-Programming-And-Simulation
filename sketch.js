@@ -3,17 +3,23 @@
 
 
 let particles = [];
-let f;
+let fire = [];
 
 function setup() {
   createCanvas(600, 400);
-  f = new Fire();
+  let f = new Fire();
+  fire.push(f);
 }
 
 function draw() {
   background(0);
   
-  f.show();
+  //Fill Fire Array
+  for (let i = 0; i < fire.length; i++){
+    fire[i].show();
+  }
+  
+  //fill smoke array
   //can generate more particles at once by adjusting the i< 
   for (let i=0; i <5; i++) {
     
@@ -44,7 +50,7 @@ class Fire {
   }
   
   show(){
-    stroke(255);
+    noStroke();
     fill(255,128,0,100)
     ellipse(this.fx, this.fy, 18);
   }
