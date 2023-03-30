@@ -1,3 +1,7 @@
+//watching tutorial and commenting what I'm learning and how to control
+// https://thecodingtrain.com/challenges/78-simple-particle-system
+
+
 let particles = [];
 function setup() {
   createCanvas(600, 400);
@@ -14,6 +18,11 @@ function draw() {
   for (let i = 0; i <particles.length; i++){
     particles[i].update();
     particles[i].show();
+    if (particles[i].finished()){
+      //remove this particle
+      //splice function removes an element from the array at position i from just that one element
+      particles.splice(i,1);
+    }
   }
 
 }
@@ -33,6 +42,11 @@ class Particle {
     
   }
   
+  finished(){
+    //this function returns true or false
+    return this.alpha < 0;
+  }
+  
   //moves the particles x and y with the random from vx and vy
   update(){
     this.x += this.vx;
@@ -43,7 +57,8 @@ class Particle {
   
   //controls what the particle looks like
   show () {
-    noStroke();
+    //noStroke();
+    stroke(255);
     fill (255,this.alpha);
     ellipse(this.x, this.y, 16);
   }
