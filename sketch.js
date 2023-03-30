@@ -68,6 +68,8 @@ class Fire {
     this.gColor = 125;
     //controls the starting color of B in RBG
     this.bColor = 0;
+    //controls the starting scale of the fire particle
+    this.fScale = 25;
     
   }
   
@@ -86,12 +88,13 @@ class Fire {
     //the color changes as the fire goes up
     //controls the fire turning yellow to red
     this.gColor -= 2;
+    this.fScale -= 2;
   }
   
   show(){
     noStroke();
     fill(this.rColor,this.gColor,this.bColor,this.alpha)
-    ellipse(this.fx, this.fy, random(10,20));
+    ellipse(this.fx, this.fy, this.fScale);
   }
 }
 class Smoke {
