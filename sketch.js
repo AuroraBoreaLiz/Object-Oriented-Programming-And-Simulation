@@ -88,7 +88,7 @@ class Fire {
     //the color changes as the fire goes up
     //controls the fire turning yellow to red
     this.gColor -= 2;
-    this.fScale -= 2;
+    this.fScale += 2;
   }
   
   show(){
