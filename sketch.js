@@ -7,15 +7,23 @@ let fire = [];
 
 function setup() {
   createCanvas(600, 400);
-  let f = new Fire();
-  fire.push(f);
+  //let f = new Fire();
+  //fire.push(f);
 }
 
 function draw() {
   background(0);
   
+  
+  for (let i=0; i <5; i++) {
+    
+    let f = new Fire ();
+    fire.push(f);
+    
+  }
   //Fill Fire Array
   for (let i = 0; i < fire.length; i++){
+    fire[i].update();
     fire[i].show();
   }
   
@@ -46,12 +54,28 @@ class Fire {
   constructor(){
     this.fx = 200;
     this.fy = 380;
+    this.fvx = random (-1,1);
+    this.fvy = random(-5,-1);
+    this.alpha = 255;
     
+  }
+  
+    
+  finished(){
+    //this function returns true or false
+    return this.alpha < 0;
+  }
+
+    update(){
+    this.fx += this.fvx;
+    this.fy += this.fvy;
+    //controls fade over time
+    this.alpha -= 5;
   }
   
   show(){
     noStroke();
-    fill(255,128,0,100)
+    fill(255,128,0,this.alpha)
     ellipse(this.fx, this.fy, 18);
   }
 }
@@ -65,7 +89,7 @@ class Particle {
     //change this to make particles go random left and right
     this.vx = random(-1,1);
     //change this in the negative to make the particles go up randomly
-    this.vy = random(-5,-1);
+    this.vy = random(-3,-1);
     this.alpha = 255;
     
   }
