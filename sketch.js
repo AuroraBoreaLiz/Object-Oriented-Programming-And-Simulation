@@ -49,11 +49,11 @@ function draw() {
 
 class Fire {
   constructor(){
-    this.fx = 300;
+    this.fx = random(290,310);
     this.fy = 380;
     this.fvx = random (-1,1);
     this.fvy = random(-3,-1);
-    this.alpha = 100;
+    this.alpha = 155;
     
   }
   
@@ -72,7 +72,7 @@ class Fire {
   
   show(){
     noStroke();
-    fill(255,128,0,this.alpha)
+    fill(255,random(100,200),0,this.alpha)
     ellipse(this.fx, this.fy, 18);
   }
 }
