@@ -15,7 +15,6 @@ function draw() {
   //fill smoke array
   //can generate more particles at once by adjusting the i< 
   for (let i=0; i <5; i++) {
-    
     let s = new Smoke ();
     smoke.push(s);
     
@@ -27,34 +26,48 @@ function draw() {
     smoke[i].update();
     smoke[i].show();
     if (smoke[i].finished()){
+      
       //remove this smoke
       //splice function removes an element from the array at position i from just that one element
       smoke.splice(i,1);
     }
   }
-  
-  for (let i=0; i <5; i++) {
+  //fill fire array
+  //can generate more particles at once by adjusting the i< 
+  for (let i=0; i <10; i++) {
     
     let f = new Fire ();
     fire.push(f);
     
   }
-  //Fill Fire Array
+  //doing the reverse count for this array puts the later particles on top so the visual is less pleasing
   for (let i = 0; i < fire.length; i++){
     fire[i].update();
     fire[i].show();
+    
+    //remove this fire particle when it is no longer visible
+    if (fire[i].finished()){     
+      
+      fire.splice(i,1);
+    }
   }
-
 }
 
+
 class Fire {
+  
   constructor(){
-    this.fx = random(290,310);
+    this.fx = random(280,320);
     this.fy = 380;
     this.fvx = random (-1,1);
     this.fvy = random(-3,-1);
     this.alpha = 155;
-    this.fColor = 200;
+    //controls the starting color of R in RGB.
+    this.rColor = 255;
+    //controls the starting color of G in RGB. 
+    this.gColor = 125;
+    //controls the starting color of B in RBG
+    this.bColor = 0;
     
   }
   
@@ -65,17 +78,19 @@ class Fire {
   }
 
     update(){
+    //connects the current x or y to the vector x or y
     this.fx += this.fvx;
     this.fy += this.fvy;
     //controls fade over time
     this.alpha -= 2;
     //the color changes as the fire goes up
-    this.fColor -= 2;
+    //controls the fire turning yellow to red
+    this.gColor -= 2;
   }
   
   show(){
     noStroke();
-    fill(255,this.fColor,0,this.alpha)
+    fill(this.rColor,this.gColor,this.bColor,this.alpha)
     ellipse(this.fx, this.fy, random(10,20));
   }
 }
