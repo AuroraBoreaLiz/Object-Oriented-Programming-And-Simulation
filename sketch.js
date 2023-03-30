@@ -15,7 +15,8 @@ function draw() {
   let p = new Particle ();
   particles.push(p);
   
-  for (let i = 0; i <particles.length; i++){
+  //particles.length-1 starts from the end of the array when deleting particles at the end of their lifespace so they aren't skipped when the array shifts
+  for (let i = particles.length-1; i >= 0; i--){
     particles[i].update();
     particles[i].show();
     if (particles[i].finished()){
