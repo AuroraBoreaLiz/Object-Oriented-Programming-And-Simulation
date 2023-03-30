@@ -11,9 +11,13 @@ function setup() {
 function draw() {
   background(0);
   
-  //makes lots of particles. Move to setup to have not continuous
-  let p = new Particle ();
-  particles.push(p);
+  //can generate more particles at once by adjusting the i< 
+  for (let i=0; i <5; i++) {
+    
+    let p = new Particle ();
+    particles.push(p);
+    
+  }
   
   //particles.length-1 starts from the end of the array when deleting particles at the end of their lifespace so they aren't skipped when the array shifts
   for (let i = particles.length-1; i >= 0; i--){
@@ -58,8 +62,8 @@ class Particle {
   
   //controls what the particle looks like
   show () {
-    //noStroke();
-    stroke(255);
+    noStroke();
+    //stroke(255);
     fill (255,this.alpha);
     ellipse(this.x, this.y, 16);
   }
